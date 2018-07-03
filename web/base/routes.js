@@ -20,10 +20,17 @@ const Routes = [{
   path: '/{param*}',
   handler: {
     directory: {
-      path: 'public',
-      listing: true
+      path: 'public'
+      // listing: true
     }
   },
+  options: {
+    auth: false
+  }
+}, {
+  method: 'GET',
+  path: '/test',
+  handler: Handler.test,
   options: {
     auth: false
   }

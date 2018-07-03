@@ -32,9 +32,9 @@ async function start () {
     {
       plugin: require('./web/error')
     },
-    // {
-    //   plugin: require('./web/authentication')
-    // },
+    {
+      plugin: require('./web/authentication')
+    },
     {
       plugin: require('./web/base')
     }
