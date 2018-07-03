@@ -8,6 +8,8 @@ async function register (server, options) {
       showErrors: process.env.NODE_ENV !== 'production'
     }
   }])
+
+  server.log('info', 'Plugin error: hapi-dev-errors useYouch')
 }
 
 exports.plugin = {

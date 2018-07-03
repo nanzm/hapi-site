@@ -3,21 +3,15 @@
 const Handler = require('./handler')
 
 const Routes = [{
-  method: '*',
-  path: '/{p*}',
-  handler: Handler.missing,
+  method: 'GET',
+  path: '/test',
+  handler: Handler.test,
   options: {
-    validate: {
-      options: {
-        abortEarly: false,
-        allowUnknown: true
-      }
-    },
-    auth: false
+    auth: 'session'
   }
 }, {
   method: 'GET',
-  path: '/{param*}',
+  path: '/public/{param*}',
   handler: {
     directory: {
       path: 'public'
@@ -28,9 +22,9 @@ const Routes = [{
     auth: false
   }
 }, {
-  method: 'GET',
-  path: '/test',
-  handler: Handler.test,
+  method: '*',
+  path: '/{p*}',
+  handler: Handler.missing,
   options: {
     auth: false
   }

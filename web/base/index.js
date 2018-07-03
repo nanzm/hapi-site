@@ -3,14 +3,12 @@
 const Routes = require('./routes')
 
 function register (server, options) {
-  server.dependency(['vision'])
-
   server.route(Routes)
-  server.log('info', 'Plugin registered: base routes & assets')
+  server.log('info', 'Plugin registered: base routes')
 }
 
 exports.plugin = {
-  name: 'base-routes-assets',
+  name: 'base-routes',
   version: '1.0.0',
   register
 }

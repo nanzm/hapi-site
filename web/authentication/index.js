@@ -25,6 +25,8 @@ async function register (server, options) {
   server.auth.default('session')
 
   server.route(Routes)
+
+  server.log('info', 'Plugin authentication: auth default session')
 }
 
 exports.plugin = {

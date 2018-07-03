@@ -21,6 +21,10 @@ const server = new Hapi.Server({
   }]
 })
 
+server.events.on('log', (event, tags) => {
+  console.log(event.data)
+})
+
 async function start () {
   await server.register([
     {
@@ -37,10 +41,10 @@ async function start () {
     },
     {
       plugin: require('./web/base')
+    },
+    {
+      plugin: require('./web/add-user-to-views')
     }
-    // {
-    //   plugin: require('./web/add-user-to-views')
-    // }
   ])
 
   const viewsPath = Path.resolve(__dirname, 'public', 'views')
@@ -55,9 +59,7 @@ async function start () {
     helpersPath: Path.resolve(viewsPath, 'helpers'),
     partialsPath: Path.resolve(viewsPath, 'partials'),
     isCached: process.env.NODE_ENV === 'production',
-    context: {
-      title: 'nancode'
-    }
+    context: {}
   })
 
   // start
