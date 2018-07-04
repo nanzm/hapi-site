@@ -1,14 +1,33 @@
 'use strict'
 
+const Joi = require('Joi')
 const Handler = require('./handler')
 
 const Routes = [
   {
-    method: ['GET', 'POST'],
+    method: 'GET',
     path: '/login',
     handler: Handler.login,
     options: {
       auth: false
+    }
+  },
+  {
+    method: 'POST',
+    path: '/login/form',
+    handler: Handler.form,
+    options: {
+      auth: false,
+      validate: {
+        payload: {
+          email: Joi.string().email(),
+          password: Joi.string().regex(/^[a-zA-Z0-9]{3,30}$/)
+        },
+        failAction: async function (request, h, err) {
+          debugger
+        }
+      }
+
     }
   },
   {

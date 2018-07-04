@@ -32,7 +32,7 @@
                         </p>
                     {{/if}}
 
-                    <form method="POST" action="/login">
+                    <form method="POST" action="/login/form">
                         <div class="field">
                             <label class="label {{#if errors.email}}is-danger{{/if}}" for="email">
                                 {{#if errors.email}}
@@ -42,7 +42,8 @@
                                 {{/if}}
                             </label>
                             <p class="control has-icons-left has-icons-right">
-                                <input class="input {{#if errors.email}}is-danger{{else}}{{#if email}}is-success{{/if}}{{/if}}" type="email" placeholder="Your personal email address" id="email" name="email" value="{{email}}">
+                                <input class="input {{#if errors.email}}is-danger{{else}}{{#if email}}is-success{{/if}}{{/if}}"
+                                       type="email" placeholder="Your personal email address" id="email" name="email" value="{{email}}">
                                 <span class="icon is-small is-left"><i class="fa fa-envelope"></i></span>
                                 <span class="icon is-small is-right">
                                     {{#if errors.email}}

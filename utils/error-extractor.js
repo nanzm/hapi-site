@@ -5,7 +5,7 @@ const errorExtractor = (error) => {
 
   error.data.details.forEach((err) => {
     const errorKey = err.path
-    errors[ errorKey ] = {
+    errors[errorKey] = {
       message: err.message.replace(/"/g, '')
     }
   })
