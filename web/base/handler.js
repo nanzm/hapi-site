@@ -4,6 +4,7 @@ const Boom = require('boom')
 
 const Handler = {
   test: async function () {
+    console.log("------------------------");
     throw new Error('')
   },
   missing: (request, h) => {

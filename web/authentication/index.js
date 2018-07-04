@@ -11,9 +11,12 @@ async function register (server, options) {
 
   server.auth.strategy('session', 'cookie', {
     password: '3Sc1EIBIfes~q9XV~i2MFrmbsHD_z5IJ',
+    cookie: 'sid-example',
     redirectTo: '/login',
     isSecure: false,
     validateFunc: async (request, session) => {
+      server.log('info', 'authentication authentication authentication!')
+
       const cached = await cache.get(session.sid)
       const out = {
         valid: !!cached

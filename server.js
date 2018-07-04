@@ -34,10 +34,10 @@ async function init () {
       plugin: require('vision')
     },
     {
-      plugin: require('./web/error')
+      plugin: require('./web/authentication')
     },
     {
-      plugin: require('./web/authentication')
+      plugin: require('./web/error')
     },
     {
       plugin: require('./web/base')

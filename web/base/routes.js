@@ -7,6 +7,7 @@ const Routes = [{
   path: '/test',
   handler: Handler.test,
   options: {
+    // auth: false
   }
 }, {
   method: 'GET',

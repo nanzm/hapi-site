@@ -24,9 +24,6 @@
                     <h1 class="title">
                         <img src="/images/star.svg" alt="">登录
                     </h1>
-                    <!--<p class="subtitle">-->
-                    <!--Access and update your personal account.-->
-                    <!--</p>-->
                     <hr>
                     {{#if errormessage}}
                         <hr>
@@ -35,7 +32,7 @@
                         </p>
                     {{/if}}
 
-                    <form method="POST">
+                    <form method="POST" action="/login">
                         <div class="field">
                             <label class="label {{#if errors.email}}is-danger{{/if}}" for="email">
                                 {{#if errors.email}}
