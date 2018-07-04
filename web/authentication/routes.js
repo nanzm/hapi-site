@@ -21,8 +21,16 @@ const Routes = [
   },
   {
     method: ['GET', 'POST'],
-    path: '/register',
-    handler: Handler.register,
+    path: '/signup',
+    handler: Handler.signup,
+    options: {
+      auth: false
+    }
+  },
+  {
+    method: 'GET',
+    path: '/forgot-password',
+    handler: Handler.forgot_password,
     options: {
       auth: false
     }

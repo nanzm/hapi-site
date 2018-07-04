@@ -7,14 +7,13 @@ const Routes = [{
   path: '/test',
   handler: Handler.test,
   options: {
-    auth: 'session'
   }
 }, {
   method: 'GET',
-  path: '/public/{param*}',
+  path: '/images/{param*}',
   handler: {
     directory: {
-      path: 'public'
+      path: 'public/images'
       // listing: true
     }
   },
@@ -22,8 +21,30 @@ const Routes = [{
     auth: false
   }
 }, {
+  method: 'GET',
+  path: '/css/{param*}',
+  handler: {
+    directory: {
+      path: 'public/css'
+    }
+  },
+  options: {
+    auth: false
+  }
+}, {
+  method: 'GET',
+  path: '/js/{param*}',
+  handler: {
+    directory: {
+      path: 'public/js'
+    }
+  },
+  options: {
+    auth: false
+  }
+}, {
   method: '*',
-  path: '/{p*}',
+  path: '/{path*}',
   handler: Handler.missing,
   options: {
     auth: false

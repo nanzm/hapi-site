@@ -4,7 +4,8 @@
   "version": "2.1.1",
   "author": "",
   "scripts": {
-    "dev": "nodemon server.js",
+    "start": "nodemon server.js",
+    "dev": "node server.js",
     "cleanup": "node ./data/load-sample-data.js --destroy",
     "setup": "npm run pumpitup",
     "pumpitup": "node ./data/load-sample-data.js",

@@ -3,15 +3,12 @@
 const Routes = require('./routes')
 
 function register (server, options) {
-  server.dependency(['vision'])
-
   server.route(Routes)
-
-  server.log('info', 'Plugin registered: movies')
+  server.log('info', 'Plugin videos!')
 }
 
 exports.plugin = {
-  name: 'movies',
+  name: 'videos',
   version: '1.0.0',
   register
 }

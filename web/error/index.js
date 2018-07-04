@@ -9,7 +9,7 @@ async function register (server, options) {
     }
   }])
 
-  server.log('info', 'Plugin error: hapi-dev-errors useYouch')
+  server.log('info', 'Plugin error!')
 }
 
 exports.plugin = {

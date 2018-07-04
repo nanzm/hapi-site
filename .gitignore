@@ -32,3 +32,6 @@ secrets.env
 
 # VS Code
 .vscode
+
+
+public/images

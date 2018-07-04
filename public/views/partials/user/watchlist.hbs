@@ -27,25 +27,25 @@
         {{/unless}}
 
         {{#watchlist}}
-            {{! grid modifier: is-6 increases the column gap and is-multiline adds prober breaks to the grid}}
+        {{! grid modifier: is-6 increases the column gap and is-multiline adds prober breaks to the grid}}
             <h2>TV Shows</h2>
             {{#unless shows}}
                 <p>
                     No TV shows on your watchlist
                 </p>
-                {{else}}
-                    <div class="columns is-6 is-variable is-multiline content">
-                        {{#each shows}}
-                            <div class="column is-one-quarter has-margin-bottom-3">
-                                <a href="/shows/{{ids.slug}}">
-                                    <img src="{{images.poster}}">
-                                    <strong>
-                                        {{title}}
-                                    </strong>
-                                </a>
-                            </div>
-                        {{/each}}
-                    </div>
+            {{else}}
+                <div class="columns is-6 is-variable is-multiline content">
+                    {{#each shows}}
+                        <div class="column is-one-quarter has-margin-bottom-3">
+                            <a href="/shows/{{ids.slug}}">
+                                <img src="{{images.poster}}">
+                                <strong>
+                                    {{title}}
+                                </strong>
+                            </a>
+                        </div>
+                    {{/each}}
+                </div>
             {{/unless}}
 
             <h2>Movies</h2>
@@ -53,20 +53,20 @@
                 <p>
                     No movies on your watchlist
                 </p>
-                {{else}}
+            {{else}}
 
-                    <div class="columns is-6 is-variable is-multiline">
-                        {{#each movies}}
-                            <div class="column is-one-quarter has-margin-bottom-3">
-                                <a href="/movies/{{ids.slug}}">
-                                    <img src="{{images.poster}}">
-                                    <strong>
-                                        {{title}}
-                                    </strong>
-                                </a>
-                            </div>
-                        {{/each}}
-                    </div>
+                <div class="columns is-6 is-variable is-multiline">
+                    {{#each movies}}
+                        <div class="column is-one-quarter has-margin-bottom-3">
+                            <a href="/movies/{{ids.slug}}">
+                                <img src="{{images.poster}}">
+                                <strong>
+                                    {{title}}
+                                </strong>
+                            </a>
+                        </div>
+                    {{/each}}
+                </div>
             {{/unless}}
         {{/watchlist}}
     </div>

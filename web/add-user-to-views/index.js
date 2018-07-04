@@ -19,7 +19,7 @@ function register (server, options) {
     return h.continue
   })
 
-  server.log('info', 'Plugin registered: add user model data to views')
+  server.log('info', 'Plugin add user!')
 }
 
 exports.plugin = {

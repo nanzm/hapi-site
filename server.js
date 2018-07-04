@@ -13,19 +13,19 @@ Dotenv.config({ path: Path.resolve(__dirname, 'secrets.env') })
 const server = new Hapi.Server({
   host: 'localhost',
   port: 3000,
-  cache: [{
-    name: 'mongoCache',
-    engine: require('catbox-mongodb'),
-    partition: 'hapi-cache',
-    uri: 'mongodb://localhost:27017/?maxPoolSize=5'
-  }]
+  // cache: [{
+  //   name: 'mongoCache',
+  //   engine: require('catbox-mongodb'),
+  //   partition: 'hapi-cache',
+  //   uri: 'mongodb://localhost:27017/?maxPoolSize=5'
+  // }]
 })
 
 server.events.on('log', (event, tags) => {
   console.log(event.data)
 })
 
-async function start () {
+async function init () {
   await server.register([
     {
       plugin: require('inert')
@@ -41,6 +41,9 @@ async function start () {
     },
     {
       plugin: require('./web/base')
+    },
+    {
+      plugin: require('./web/videos')
     },
     {
       plugin: require('./web/add-user-to-views')
@@ -62,14 +65,14 @@ async function start () {
     context: {}
   })
 
-  // start
-  try {
-    await server.start()
-    console.log(`Server started → ${server.info.uri}`)
-  } catch (err) {
-    console.error(err)
-    process.exit(1)
-  }
+  //启动
+  await server.start()
+  console.log(`Server started → ${server.info.uri}`)
 }
 
-start()
+process.on('unhandledRejection', (err) => {
+  console.error(err)
+  process.exit(1)
+})
+
+init()

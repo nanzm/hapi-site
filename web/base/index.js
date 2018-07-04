@@ -4,7 +4,7 @@ const Routes = require('./routes')
 
 function register (server, options) {
   server.route(Routes)
-  server.log('info', 'Plugin registered: base routes')
+  server.log('info', 'Plugin base!')
 }
 
 exports.plugin = {

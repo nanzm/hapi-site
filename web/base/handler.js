@@ -3,6 +3,9 @@
 const Boom = require('boom')
 
 const Handler = {
+  test: async function () {
+    throw new Error('')
+  },
   missing: (request, h) => {
     const accept = request.headers.accept
 
@@ -11,9 +14,6 @@ const Handler = {
     }
 
     return h.view('404').code(404)
-  },
-  test: async function () {
-    throw new Error('')
   }
 }
 

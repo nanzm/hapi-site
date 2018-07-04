@@ -1,40 +1,33 @@
 <div class="navbar-menu" id="navbarMenu">
     <div class="navbar-start">
-        <a class="navbar-item" href="/movies">
-            Movies
-        </a>
-        <a class="navbar-item" href="/shows">
-            TV Shows
-        </a>
-        <a class="navbar-item" href="/discover">
-            Discover
-        </a>
-
+        <a class="navbar-item" href="/videos">videos</a>
+        <a class="navbar-item" href="/test">test</a>
+        <a class="navbar-item" href="/">/</a>
     </div>
 
     <div class="navbar-end">
-        <div class="navbar-item">
-            <form action="/search" method="POST">
-                <input type="hidden" name="keepMeSafeFromCsrf" value="{{keepMeSafeFromCsrf}}">
+        <!--<div class="navbar-item">-->
+        <!--<form action="/search" method="POST">-->
+        <!--<input type="hidden" name="keepMeSafeFromCsrf" value="{{keepMeSafeFromCsrf}}">-->
 
-                <div class="field has-addons">
-                    <p class="control">
-                        <input class="input search-input" type="text" name="keyword" placeholder="Search Futureflix" value="{{keyword}}">
-                    </p>
-                    <p class="control">
-                        <button class="button search-button">
-                            <figure class="image is-16x16">
-                                {{#if isHero}}
-                                    <img src="/images/search-white.svg" alt="">
-                                {{else}}
-                                    <img src="/images/search.svg" alt="">
-                                {{/if}}
-                            </figure>
-                        </button>
-                    </p>
-                </div>
-            </form>
-        </div>
+        <!--<div class="field has-addons">-->
+        <!--<p class="control">-->
+        <!--<input class="input search-input" type="text" name="keyword" placeholder="Search Futureflix" value="{{keyword}}">-->
+        <!--</p>-->
+        <!--<p class="control">-->
+        <!--<button class="button search-button">-->
+        <!--<figure class="image is-16x16">-->
+            <!--{{#if isHero}}-->
+        <!--<img src="/images/search-white.svg" alt="">-->
+            <!--{{else}}-->
+        <!--<img src="/images/search.svg" alt="">-->
+            <!--{{/if}}-->
+        <!--</figure>-->
+        <!--</button>-->
+        <!--</p>-->
+        <!--</div>-->
+        <!--</form>-->
+        <!--</div>-->
 
         {{#if user}}
             <div class="navbar-item has-dropdown is-hoverable">
@@ -89,21 +82,19 @@
                         <img src="/images/log-out.svg" alt="">
                     {{/if}}
                 </figure>
-                Logout
+                登出
             </a>
         {{else}}
             <div class="navbar-item">
                 <div class="field is-grouped">
                     <p class="control">
-                        <a class="button is-primary" href="/signup">
-                            Sign up
-                        </a>
+                        <a class="button is-primary" href="/signup">注册</a>
                     </p>
                     <a class="button" href="/login">
                         <figure class="image is-16x16" style="margin-right: 8px;">
                             <img src="/images/log-in.svg" alt="">
                         </figure>
-                        Log in
+                        登录
                     </a>
                 </div>
             </div>

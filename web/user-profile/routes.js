@@ -6,7 +6,10 @@ const Routes = [
   {
     method: 'GET',
     path: '/profile',
-    config: Handler.profile
+    handler: Handler.profile,
+    options: {
+      auth: false
+    }
   }
 ]
 
