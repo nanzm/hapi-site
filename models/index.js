@@ -1,16 +1,12 @@
 'use strict'
 
 const Mongoose = require('mongoose')
-const Movie = require('./movie')
-const Show = require('./show')
-const Season = require('./season')
-const Episode = require('./episode')
 
 // tell Mongoose to use Node.js promises
 Mongoose.Promise = global.Promise
 
-// Connect to your database
-Mongoose.connect(process.env.DATABASE || 'mongodb://localhost/futureflix')
+// Connect to database
+Mongoose.connect(process.env.DATABASE || 'mongodb://localhost/hapi-site')
 
 // listen for connection errors and print the message
 Mongoose.connection.on('error', err => {
@@ -18,10 +14,6 @@ Mongoose.connection.on('error', err => {
   throw err
 })
 
-// use ES6 shorthands: "propertyName: variableName" equals "propertyName"
 module.exports = {
-  Movie,
-  Show,
-  Season,
-  Episode
+
 }
