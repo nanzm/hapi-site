@@ -8,7 +8,7 @@ const Video = require('./video')
 Mongoose.Promise = global.Promise
 
 // Connect to database
-Mongoose.connect(process.env.DATABASE || 'mongodb://localhost/hapi-site')
+Mongoose.connect(process.env.MONGODB_URL)
 
 // listen for connection errors and print the message
 Mongoose.connection.on('error', err => {

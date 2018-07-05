@@ -64,6 +64,16 @@ const Routes = [
     }
   },
   {
+    method: 'GET',
+    path: '/signup_success',
+    handler: Handler.signup_success,
+    options: {
+      auth: {
+        mode: 'try'
+      }
+    }
+  },
+  {
     method: 'POST',
     path: '/signup',
     handler: Handler.signup_submit,

@@ -52,6 +52,12 @@ const Handler = {
     return h.view('signup')
   },
   /**
+   * 注册成功
+   */
+  signup_success: async function (request, h) {
+    return h.view('signup-success')
+  },
+  /**
    * 注册提交
    */
   signup_submit: async function (request, h) {
@@ -64,7 +70,7 @@ const Handler = {
     try {
       const usre = await  User.create({ email, password })
       // saved!
-      return h.redirect('/login')
+      return h.redirect('/signup_success')
 
     } catch (e) {
 

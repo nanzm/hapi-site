@@ -6,9 +6,12 @@ const Dotenv = require('dotenv')
 const Handlebars = require('handlebars')
 const HandlebarsRepeatHelper = require('handlebars-helper-repeat')
 
+const fundebug = require('fundebug-nodejs')
+fundebug.apikey = process.env.FUNDEBUG
+
 Handlebars.registerHelper('repeat', HandlebarsRepeatHelper)
 
-Dotenv.config({ path: Path.resolve(__dirname, 'secrets.env') })
+Dotenv.config({ path: Path.resolve(__dirname, 'config.env') })
 
 const server = new Hapi.Server({
   host: 'localhost',
@@ -17,7 +20,7 @@ const server = new Hapi.Server({
     name: 'mongoCache',
     engine: require('catbox-mongodb'),
     partition: 'hapi-cache',
-    uri: 'mongodb://localhost/?maxPoolSize=5'
+    uri: process.env.MONGODB_CACHE
   }]
 })
 
@@ -43,6 +46,9 @@ async function init () {
     },
     {
       plugin: require('./web/videos')
+    },
+    {
+      plugin: require('./web/qiniu')
     },
     {
       plugin: require('./web/add-user-to-views')
@@ -71,6 +77,7 @@ async function init () {
 
 process.on('unhandledRejection', (err) => {
   console.error(err)
+  fundebug.HapiErrorHandler(err)
   process.exit(1)
 })
 

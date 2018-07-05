@@ -11,9 +11,9 @@ async function register (server, options) {
   await server.register(require('hapi-auth-cookie'))
 
   server.auth.strategy('session', 'cookie', {
-    password: '3Sc1EIBIfes~q9XV~i2MFrmbsHD_z5IJ',
-    cookie: 'sid',
     redirectTo: '/login',
+    password: process.env.AUTH_PASSWORD,
+    cookie: process.env.SID,
     isSecure: false,
     validateFunc: async (request, session) => {
       const cached = await cache.get(session.sid)

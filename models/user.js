@@ -12,7 +12,7 @@ const LOCK_TIME = 2 * 60 * 60 * 1000
 const UserSchema = new Schema({
   name: {
     type: String,
-    default: ''
+    default: '用户'
   },
   headimgurl: {
     type: String,
