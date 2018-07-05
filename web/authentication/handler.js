@@ -1,6 +1,7 @@
 'use strict'
 
 const nanoid = require('nanoid')
+const errorExtractor = require('../../utils/error-extractor')
 const users = {
   test: {
     username: 'john',
@@ -18,13 +19,8 @@ const Handler = {
    */
   login: async function (request, h) {
     let redirectUrl = request.info.referrer
-
     if (request.auth.isAuthenticated) {
       return h.redirect(redirectUrl)
-    }
-
-    if (request.method === 'post') {
-
     }
     return h.view('login')
   },
@@ -35,7 +31,17 @@ const Handler = {
    * @returns {Promise<*>}
    */
   form: async function (request, h) {
-    return h.view('login')
+    let err = null
+    if (request.validateError) {
+      err = errorExtractor(request.validateError)
+      return h.view('login', { errors: err, email: request.payload.email })
+    }
+
+    // const sid = nanoid
+    // await request.server.app.cache.set(sid, { account }, 0)
+    // request.cookieAuth.set({ sid })
+
+    return h.redirect('/')
   },
   /**
    * 退出登录

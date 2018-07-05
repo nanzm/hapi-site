@@ -13,16 +13,12 @@ Dotenv.config({ path: Path.resolve(__dirname, 'secrets.env') })
 const server = new Hapi.Server({
   host: 'localhost',
   port: 3000,
-  // cache: [{
-  //   name: 'mongoCache',
-  //   engine: require('catbox-mongodb'),
-  //   partition: 'hapi-cache',
-  //   uri: 'mongodb://localhost:27017/?maxPoolSize=5'
-  // }]
-})
-
-server.events.on('log', (event, tags) => {
-  console.log(event.data)
+  cache: [{
+    name: 'mongoCache',
+    engine: require('catbox-mongodb'),
+    partition: 'hapi-cache',
+    uri: 'mongodb://localhost/?maxPoolSize=5'
+  }]
 })
 
 async function init () {
@@ -32,6 +28,9 @@ async function init () {
     },
     {
       plugin: require('vision')
+    },
+    {
+      plugin: require('./web/monitoring')
     },
     {
       plugin: require('./web/authentication')

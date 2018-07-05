@@ -33,5 +33,5 @@ secrets.env
 # VS Code
 .vscode
 
+log
 
-public/images

@@ -14,7 +14,7 @@ const Routes = [
   },
   {
     method: 'POST',
-    path: '/login/form',
+    path: '/login',
     handler: Handler.form,
     options: {
       auth: false,
@@ -24,10 +24,10 @@ const Routes = [
           password: Joi.string().regex(/^[a-zA-Z0-9]{3,30}$/)
         },
         failAction: async function (request, h, err) {
-          debugger
+          request.validateError = err
+          return h.continue
         }
       }
-
     }
   },
   {

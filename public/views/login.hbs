@@ -24,7 +24,6 @@
                     <h1 class="title">
                         <img src="/images/star.svg" alt="">登录
                     </h1>
-                    <hr>
                     {{#if errormessage}}
                         <hr>
                         <p class="error">
@@ -32,7 +31,7 @@
                         </p>
                     {{/if}}
 
-                    <form method="POST" action="/login/form">
+                    <form method="POST">
                         <div class="field">
                             <label class="label {{#if errors.email}}is-danger{{/if}}" for="email">
                                 {{#if errors.email}}
