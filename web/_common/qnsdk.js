@@ -1,3 +1,5 @@
+'use strict'
+
 const qiniu = require('qiniu')
 
 const accessKey = process.env.ACCESSKEY
