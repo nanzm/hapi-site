@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+    {{#> _head }}
+        <title>七牛文件列表</title>
+    {{/_head}}
+</head>
+<body>
+<div class="app">
+    {{> header}}
+    <section class="section">
+        <div class="container">
+            {{#each data.items}}
+                <div class="columns">
+                    <div class="column is-three-quarters">{{key}}</div>
+                    <div class="column">Auto</div>
+                    <div class="column">Auto</div>
+                </div>
+            {{/each}}
+        </div>
+    </section>
+</div>
+{{> footer}}
+</body>
+</html>
+

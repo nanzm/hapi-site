@@ -4,11 +4,8 @@ const Hapi = require('hapi')
 const Path = require('path')
 const Dotenv = require('dotenv')
 const Handlebars = require('handlebars')
-const HandlebarsRepeatHelper = require('handlebars-helper-repeat')
-
 const fundebug = require('fundebug-nodejs')
-fundebug.apikey = process.env.FUNDEBUG
-
+const HandlebarsRepeatHelper = require('handlebars-helper-repeat')
 Handlebars.registerHelper('repeat', HandlebarsRepeatHelper)
 
 Dotenv.config({ path: Path.resolve(__dirname, 'config.env') })
@@ -75,6 +72,8 @@ async function init () {
   console.log(`Server started → ${server.info.uri}`)
 }
 
+//bug report
+fundebug.apikey = process.env.FUNDEBUG
 process.on('unhandledRejection', (err) => {
   console.error(err)
   fundebug.HapiErrorHandler(err)
