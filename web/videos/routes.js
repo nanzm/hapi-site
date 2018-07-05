@@ -9,7 +9,9 @@ const Routes = [
     path: '/',
     handler: Handler.index,
     options: {
-      auth: false
+      auth: {
+        mode: 'try'
+      }
     }
   },
   {
@@ -22,7 +24,9 @@ const Routes = [
           slug: Joi.string().required()
         }
       },
-      auth: false
+      auth: {
+        mode: 'try'
+      }
     }
   }
 ]

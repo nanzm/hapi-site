@@ -4,8 +4,7 @@ const Boom = require('boom')
 
 const Handler = {
   test: async function () {
-    console.log("------------------------");
-    throw new Error('')
+    throw new Error('服务器向你抛了一个错误！')
   },
   missing: (request, h) => {
     const accept = request.headers.accept

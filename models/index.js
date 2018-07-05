@@ -1,6 +1,8 @@
 'use strict'
 
 const Mongoose = require('mongoose')
+const User = require('./user')
+const Video = require('./video')
 
 // tell Mongoose to use Node.js promises
 Mongoose.Promise = global.Promise
@@ -14,6 +16,4 @@ Mongoose.connection.on('error', err => {
   throw err
 })
 
-module.exports = {
-
-}
+module.exports = { User, Video }

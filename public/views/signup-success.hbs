@@ -1,19 +1,39 @@
-<div class="columns content">
-  <div class="column is-half is-offset-one-quarter">
-      <h1 class="title">
-          <img src="/images/check-circle.svg" alt=""> You’ve Joined Futureflix
-      </h1>
-      <p class="subtitle">
-          Feels nice to move closer together :)
-      </p>
+<!doctype html>
+<html lang="en">
+<head>
+    {{#> _head }}
+        <title>注册成功</title>
+    {{/_head}}
+</head>
+<body>
+<div class="app">
+    {{> header}}
+    <section class="section">
+        <div class="container">
+            <div class="columns content">
+                <div class="column is-half is-offset-one-quarter">
+                    <h1 class="title">
+                        <img src="/images/check-circle.svg" alt=""> You’ve Joined Futureflix
+                    </h1>
+                    <p class="subtitle">
+                        Feels nice to move closer together :)
+                    </p>
 
-    <hr>
+                    <hr>
 
-    <div class="notification is-success">
-      <p>
-        Your account is created. Next stop: login and remember the user after sign up and login.
-      </p>
-    </div>
+                    <div class="notification is-success">
+                        <p>
+                            Your account is created. Next stop: login and remember the user after sign up and login.
+                        </p>
+                    </div>
 
-  </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
 </div>
+{{> footer}}
+</body>
+</html>
+

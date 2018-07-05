@@ -7,9 +7,7 @@ const Routes = [
     method: 'GET',
     path: '/profile',
     handler: Handler.profile,
-    options: {
-      auth: false
-    }
+    options: {}
   }
 ]
 

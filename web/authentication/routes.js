@@ -3,13 +3,27 @@
 const Joi = require('Joi')
 const Handler = require('./handler')
 
+/**
+ * 将错误信息挂到request
+ * @param request
+ * @param h
+ * @param err
+ * @returns {Promise<*>}
+ */
+async function goNext (request, h, err) {
+  request.validateError = err
+  return h.continue
+}
+
 const Routes = [
   {
     method: 'GET',
     path: '/login',
     handler: Handler.login,
     options: {
-      auth: false
+      auth: {
+        mode: 'try'
+      }
     }
   },
   {
@@ -17,16 +31,15 @@ const Routes = [
     path: '/login',
     handler: Handler.form,
     options: {
-      auth: false,
+      auth: {
+        mode: 'try'
+      },
       validate: {
         payload: {
           email: Joi.string().email(),
           password: Joi.string().regex(/^[a-zA-Z0-9]{3,30}$/)
         },
-        failAction: async function (request, h, err) {
-          request.validateError = err
-          return h.continue
-        }
+        failAction: goNext
       }
     }
   },
@@ -35,15 +48,36 @@ const Routes = [
     path: '/logout',
     handler: Handler.logout,
     options: {
-      auth: false
+      auth: {
+        mode: 'try'
+      }
     }
   },
   {
-    method: ['GET', 'POST'],
+    method: 'GET',
     path: '/signup',
     handler: Handler.signup,
     options: {
-      auth: false
+      auth: {
+        mode: 'try'
+      }
+    }
+  },
+  {
+    method: 'POST',
+    path: '/signup',
+    handler: Handler.signup_submit,
+    options: {
+      auth: {
+        mode: 'try'
+      },
+      validate: {
+        payload: {
+          email: Joi.string().email(),
+          password: Joi.string().regex(/^[a-zA-Z0-9]{3,30}$/)
+        },
+        failAction: goNext
+      }
     }
   },
   {
@@ -51,7 +85,25 @@ const Routes = [
     path: '/forgot-password',
     handler: Handler.forgot_password,
     options: {
-      auth: false
+      auth: {
+        mode: 'try'
+      }
+    }
+  },
+  {
+    method: 'POST',
+    path: '/forgot-password',
+    handler: Handler.forgot_password_submit,
+    options: {
+      auth: {
+        mode: 'try'
+      },
+      validate: {
+        payload: {
+          email: Joi.string().email()
+        },
+        failAction: goNext
+      }
     }
   }
 ]

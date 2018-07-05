@@ -9,6 +9,7 @@ const Nodemailer = require('nodemailer')
 const Handlebars = require('handlebars')
 const HtmlToText = require('html-to-text')
 const PostmarkTransport = require('nodemailer-postmark-transport')
+
 const Transporter = Nodemailer.createTransport(
   PostmarkTransport({
     auth: {
@@ -16,7 +17,7 @@ const Transporter = Nodemailer.createTransport(
     }
   })
 )
-const Templates = Path.resolve(__dirname, '..', 'email-templates')
+const Templates = Path.resolve(__dirname, '../web', 'email-templates')
 
 /**
  * filename: email template name, without ".html" file ending. Email templates are located within "server/email-templates"

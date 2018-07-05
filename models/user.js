@@ -10,8 +10,14 @@ const MAX_LOGIN_ATTEMPTS = 5
 const LOCK_TIME = 2 * 60 * 60 * 1000
 
 const UserSchema = new Schema({
-  name: String,
-  headimgurl: String,
+  name: {
+    type: String,
+    default: ''
+  },
+  headimgurl: {
+    type: String,
+    default: ''
+  },
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
   role: {
@@ -50,7 +56,7 @@ UserSchema.pre('save', function (next) {
   })
 })
 
-UserSchema.methods = {
+UserSchema.statics = {
   comparePassword: function (_password, password) {
     return new Promise((resolve, reject) => {
       bcrypt.compare(_password, password, function (err, isMatch) {

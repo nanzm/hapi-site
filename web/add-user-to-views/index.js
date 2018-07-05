@@ -5,13 +5,12 @@ const _ = require('lodash')
 function register (server, options) {
   server.ext('onPreResponse', (request, h) => {
     const response = request.response
-
     // rendering a view? then add the user object
     if (response.variety && _.isEqual(response.variety, 'view')) {
       response.source.context = response.source.context || {}
 
-      if (request.auth.isAuthenticated && request.user.id) {
-        response.source.context.user = request.user
+      if (request.auth.isAuthenticated) {
+        response.source.context.user = request.auth.credentials
         return h.continue
       }
     }

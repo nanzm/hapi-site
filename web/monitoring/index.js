@@ -5,17 +5,11 @@ async function register (server, options) {
     plugin: require('good'),
     options: {
       ops: {
-        interval: 1000
+        interval: 5000
       },
       reporters: {
         myConsoleReporter: [
-          { module: 'good-squeeze', name: 'Squeeze', args: [{ log: '*', response: '*' }] },
-          { module: 'good-console' }, 'stdout'],
-        myFileReporter: [
-          { module: 'good-squeeze', name: 'Squeeze', args: [{ ops: '*' }] },
-          { module: 'good-squeeze', name: 'SafeJson' },
-          { module: 'good-file', args: ['./log/awesome_log'] }
-        ]
+          { module: 'good-console' }, 'stdout']
       }
     }
   }])

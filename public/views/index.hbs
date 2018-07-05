@@ -3,40 +3,11 @@
 <head>
     {{#> _head }}
         <title>404</title>
-
-            <style>
-            .hero-bg {
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background-size: cover;
-                background-position: 50% 10%;
-                opacity: .8;
-                transition: all 1s;
-            }
-
-
-            .hero {
-                background-color: black;
-                background-size: cover;
-                background-position: 50% 10%;
-                color: white;
-                position: relative;
-            }
-
-            .hero.is-dark h2 {}
-        </style>
-
     {{/_head}}
 </head>
 <body>
 <div class="app">
     {{> header}}
-
-    <!-- Hero content: will be in the middle -->
-    {{> hero-movies-shows movieOrShow=movie user=user isHeight='is-fullheight' keepMeSafeFromCsrf=keepMeSafeFromCsrf}}
     <section class="section">
         <div class="container">
             <div class="columns content">

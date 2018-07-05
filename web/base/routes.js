@@ -7,7 +7,6 @@ const Routes = [{
   path: '/test',
   handler: Handler.test,
   options: {
-    // auth: false
   }
 }, {
   method: 'GET',
@@ -48,7 +47,9 @@ const Routes = [{
   path: '/{path*}',
   handler: Handler.missing,
   options: {
-    auth: false
+    auth: {
+      mode: 'try'
+    }
   }
 }]
 

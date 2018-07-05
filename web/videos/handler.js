@@ -1,14 +1,13 @@
 'use strict'
 
-const Path = require('path')
-const Movie = require(Path.resolve(__dirname, '..', '..', 'models')).Movie
+const Video = require('../../models/video')
 
 const Handler = {
   index: async (request, h) => {
     try {
-      const movies = await Movie.find()
+      const videos = await Video.find()
 
-      return h.view('videos/index', { movies })
+      return h.view('videos/index', { videos })
     } catch (e) {
 
     }
@@ -16,7 +15,7 @@ const Handler = {
   single: async (request, h) => {
     try {
       const slug = request.params.slug
-      const movie = await Movie.findOne({ 'ids.slug': slug })
+      const movie = await Video.findOne({ 'ids.slug': slug })
 
       if (!movie) {
         return h.view('404')
