@@ -1,9 +1,7 @@
 const qiniu = require('qiniu')
 
-// const accessKey = process.env.ACCESSKEY
-// const secretKey = process.env.SECRETKEY
-const accesskey = 'uSwBl4Izt_hjid-iaMWZJqmEzAf2aqAnaUG9MXY9'
-const secretkey = 'lecz-TriYWSUDXuAbocirK4SiDJXN0LyU82RTwoZ'
+const accessKey = process.env.ACCESSKEY
+const secretKey = process.env.SECRETKEY
 
 class qn {
   constructor (opts) {
@@ -24,10 +22,10 @@ class qn {
     this.config = config
 
     // mac
-    const mac = new qiniu.auth.digest.Mac(accesskey, secretkey)
+    const mac = new qiniu.auth.digest.Mac(accessKey, secretKey)
     this.mac = mac
 
-    //bucketManager
+    // bucketManager
     this.bucketManager = new qiniu.rs.BucketManager(mac, config)
   }
 
@@ -48,9 +46,9 @@ class qn {
     const options = Object.assign({
       limit: 20,
       prefix: ''
-      //marker    上一次列举返回的位置标记，作为本次列举的起点信息
-      //limit     每次返回的最大列举文件数量
-      //delimiter 指定目录分隔符
+      // marker    上一次列举返回的位置标记，作为本次列举的起点信息
+      // limit     每次返回的最大列举文件数量
+      // delimiter 指定目录分隔符
     }, optionsParam)
 
     return new Promise(function (resolve, reject) {
@@ -62,7 +60,6 @@ class qn {
         resolve(respInfo)
       })
     })
-
   }
 
   delete (key, bucketParam) {
@@ -70,7 +67,7 @@ class qn {
     const bucket = bucketParam || 'cdn-block1'
 
     return new Promise(function (resolve, reject) {
-      if (!keyParam) reject(new Error('必须传入key'))
+      if (!key) reject(new Error('必须传入key'))
 
       that.bucketManager.delete(bucket, key, function (err, respBody, respInfo) {
         if (err) {

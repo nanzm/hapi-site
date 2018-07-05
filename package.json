@@ -5,7 +5,8 @@
   "author": "",
   "scripts": {
     "debug": "nodemon --inspect server.js",
-    "test": "cross-env NODE_ENV=test lab --assert code --leaks --coverage --lint",
+    "deploy": "pm2 deploy production setup",
+    "update": "pm2 deploy production update",
     "lint": "./node_modules/eslint/bin/eslint.js . --fix --ext .js"
   },
   "dependencies": {
