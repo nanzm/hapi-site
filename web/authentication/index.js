@@ -1,4 +1,5 @@
 'use strict'
+
 const Routes = require('./routes')
 
 async function register (server, options) {

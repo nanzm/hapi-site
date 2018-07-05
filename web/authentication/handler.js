@@ -31,7 +31,6 @@ const Handler = {
       request.cookieAuth.set({ sid })
 
       return h.redirect('/')
-
     } catch (e) {
       return h.view('login', { errormessage: e.message })
     }
@@ -68,13 +67,11 @@ const Handler = {
 
     const { email, password } = request.payload
     try {
-      const usre = await  User.create({ email, password })
+      await User.create({ email, password })
       // saved!
       return h.redirect('/signup_success')
-
     } catch (e) {
-
-      if (e.code == 11000) e.errmsg = '账号已存在'
+      if (e.code === 11000) e.errmsg = '账号已存在'
       return h.view('signup', { errormessage: e.errmsg })
     }
   },
