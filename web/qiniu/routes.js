@@ -4,7 +4,7 @@ const Handler = require('./handler')
 
 const Routes = [{
   method: 'GET',
-  path: '/qn',
+  path: '/qiniu',
   handler: Handler.index,
   options: {
     auth: {
@@ -13,8 +13,8 @@ const Routes = [{
   }
 }, {
   method: 'GET',
-  path: '/qn/token',
-  handler: Handler.token,
+  path: '/qiniu/trans',
+  handler: Handler.trans,
   options: {
     auth: {
       mode: 'try'
@@ -22,7 +22,25 @@ const Routes = [{
   }
 }, {
   method: 'GET',
-  path: '/qn/notify',
+  path: '/qiniu/del',
+  handler: Handler.del,
+  options: {
+    auth: {
+      mode: 'try'
+    }
+  }
+}, {
+  method: 'GET',
+  path: '/qiniu/token',
+  handler: Handler.token,
+  options: {
+    auth: {
+      mode: 'try'
+    }
+  }
+}, {
+  method: 'POST',
+  path: '/qiniu/notify',
   handler: Handler.notify,
   options: {
     auth: false

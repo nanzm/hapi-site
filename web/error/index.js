@@ -5,7 +5,8 @@ async function register (server, options) {
     plugin: require('hapi-dev-errors'),
     options: {
       useYouch: true,
-      showErrors: process.env.NODE_ENV !== 'production'
+      // showErrors: process.env.NODE_ENV !== 'production'
+      showErrors: true
     }
   }])
 

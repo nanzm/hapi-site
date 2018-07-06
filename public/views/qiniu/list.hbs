@@ -8,15 +8,41 @@
 <body>
 <div class="app">
     {{> header}}
-    <section class="section">
-        <div class="container">
-            {{#each data.items}}
-                <div class="columns">
-                    <div class="column is-three-quarters">{{key}}</div>
-                    <div class="column">Auto</div>
-                    <div class="column">Auto</div>
-                </div>
-            {{/each}}
+    <section class="section ">
+        <div class="container box">
+            <table class="table  is-striped  is-hoverable is-fullwidth">
+                <thead>
+                <tr>
+                    <th>视频名字(key)</th>
+                    <th>类型</th>
+                    <th>存入时间</th>
+                    <th>大小</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                {{#each data.items}}
+                    <tr>
+                        <td>{{key}}</td>
+                        <td>{{mimeType}}</td>
+                        <td>{{formatTime putTime}}</td>
+                        <td>{{formatFsize fsize}}</td>
+                        <td><a href="/qiniu/trans?key={{key}}" class="button is-primary">转码</a>
+                            <!--&nbsp;<a href="/qiniu/del?key={{key}}" class="button  is-danger">删除</a>-->
+                        </td>
+                    </tr>
+                {{/each}}
+                </tbody>
+            </table>
+            <nav class="pagination" role="navigation" aria-label="pagination">
+                <a class="pagination-previous" title="This is the first page" href="/qiniu">首页</a>
+                {{#if data.marker}}
+                    <a class="pagination-next" href="/qiniu?marker={{data.marker}}">下一页</a>
+                {{else}}
+                    <a class="pagination-next" title="Disabled button" disabled>下一页</a>
+                {{/if}}
+                <ul class="pagination-list"></ul>
+            </nav>
         </div>
     </section>
 </div>

@@ -3,6 +3,7 @@ module.exports = {
     {
       name: 'hapi-site',
       script: 'server.js',
+      kill_timeout: 1600,
       env: {
         COMMON_VARIABLE: 'true'
       },
