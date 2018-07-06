@@ -6,8 +6,7 @@ const Routes = [{
   method: 'GET',
   path: '/test',
   handler: Handler.test,
-  options: {
-  }
+  options: {}
 }, {
   method: 'GET',
   path: '/images/{param*}',
@@ -26,6 +25,17 @@ const Routes = [{
   handler: {
     directory: {
       path: 'public/css'
+    }
+  },
+  options: {
+    auth: false
+  }
+}, {
+  method: 'GET',
+  path: '/fonts/{param*}',
+  handler: {
+    directory: {
+      path: 'public/fonts'
     }
   },
   options: {

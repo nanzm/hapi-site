@@ -10,10 +10,14 @@ const Handler = {
   index: async function (req, h) {
     try {
       let opts = { marker: '' }
-      if (req.query && req.query.marker) opts.marker = req.query.marker
+      if (req.query.marker) opts.marker = req.query.marker
 
-      const result = await new Qiniu().list(opts)
-      return h.view('qiniu/list', { data: result.data })
+      const result = await new Qiniu().list(opts, req.query.bucket || '')
+
+      let isBlock2 = req.query.bucket == 'cdn-block2'
+
+      return h.view('qiniu/list', { data: result.data, isBlock2 })
+
     } catch (e) {
       const { path, method } = req
       return h.view('server-error', {
@@ -42,8 +46,10 @@ const Handler = {
   del: async function (req, h) {
     try {
       let redirectUrl = req.headers.referer || '/qiniu'
-      if (req.query && req.query.key) {
-        await new Qiniu().delete(req.query.key)
+
+      if (req.query.key && req.query.bucket) {
+        await new Qiniu().delete(req.query.key, req.query.bucket)
+
         return h.redirect(redirectUrl)
       } else {
         throw new Error('需要传入相应的key')

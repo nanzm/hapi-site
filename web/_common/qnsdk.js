@@ -73,12 +73,11 @@ class qn {
   /**
    * 删除
    * @param key
-   * @param bucketParam 默认是 cdn-block1
+   * @param bucket
    * @returns {Promise<any>}
    */
-  delete (key, bucketParam) {
+  delete (key, bucket) {
     const that = this
-    const bucket = bucketParam || 'cdn-block1'
 
     return new Promise(function (resolve, reject) {
       if (!key) reject(new Error('必须传入key'))
@@ -107,7 +106,7 @@ class qn {
     const saveKey = key.substr(0, index)
 
     //多媒体队列
-    var pipeline = ' doing1'
+    var pipeline = 'doing1'
 
     var srcBucket = 'cdn-block1'
     var srcKey = key
@@ -124,11 +123,9 @@ class qn {
       'avthumb/mp4|saveas/' + qiniu.util.urlsafeBase64Encode(saveBucket + ':' + saveKey + '.mp4'),
       'vframe/jpg/offset/10|saveas/' + qiniu.util.urlsafeBase64Encode(saveBucket + ':' + saveKey + '.jpg')
     ]
-    debugger
     //持久化数据处理返回的是任务的persistentId，可以根据这个id查询处理状态
     return new Promise(function (resolve, reject) {
       operManager.pfop(srcBucket, srcKey, fops, pipeline, options, function (err, respBody, respInfo) {
-        debugger
         if (err) {
           return reject(err)
         }

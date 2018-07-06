@@ -4,7 +4,7 @@
   "version": "2.1.1",
   "author": "",
   "scripts": {
-    "debug": "nodemon --inspect server.js",
+    "dev": "nodemon --inspect server.js",
     "deploy": "pm2 deploy production update",
     "lint": "./node_modules/eslint/bin/eslint.js . --fix --ext .js"
   },
