@@ -30,14 +30,11 @@ const Handler = {
    */
   trans: async function (req, h) {
     try {
-      //TODO
       const file = req.query.key
       const result = await new Qiniu().trans(file)
-      debugger
-      return h.response(result).code(400)
+      return h.redirect('/qiniu?bucket=cdn-block2')
     } catch (e) {
-      debugger
-      return h.response(e).code(500)
+      return h.view('server-error', { e })
     }
   },
   /**

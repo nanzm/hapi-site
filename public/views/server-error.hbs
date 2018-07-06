@@ -13,17 +13,12 @@
             <div class="columns content">
                 <div class="column"></div>
                 <div class="column is-three-quarters">
-                    <h1 class="title">
-                        <img src="/images/zap.svg" alt="">
-                        {{method}} {{path}}
-                    </h1>
-                    <hr>
                     <p>
                         <strong>Error Details</strong>
                         <br>
-                        {{message}}
+                        {{e.message}}
                     </p>
-                    <pre><code>{{{stack}}}</code></pre>
+                    <pre><code>{{{e.stack}}}</code></pre>
                 </div>
                 <div class="column"></div>
             </div>

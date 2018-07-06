@@ -16,12 +16,9 @@ const Handler = {
   single: async (request, h) => {
     try {
       const slug = request.params.slug
-      const movie = await Video.findOne({ 'ids.slug': slug })
 
-      if (!movie) {
-        return h.view('404')
-      }
-      return h.view('videos/single', { movie })
+      return h.view('videos/single')
+
     } catch (e) {
 
     }
