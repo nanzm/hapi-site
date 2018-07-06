@@ -16,6 +16,16 @@ const Routes = [
   },
   {
     method: 'GET',
+    path: '/videos',
+    handler: Handler.videos,
+    options: {
+      auth: {
+        mode: 'try'
+      }
+    }
+  },
+  {
+    method: 'GET',
     path: '/videos/{slug}',
     handler: Handler.single,
     options: {

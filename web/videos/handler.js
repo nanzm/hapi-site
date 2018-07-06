@@ -4,10 +4,11 @@ const Video = require('../../models/video')
 
 const Handler = {
   index: async (request, h) => {
+    return h.redirect('/videos')
+  },
+  videos: async (request, h) => {
     try {
-      const videos = await Video.find()
-
-      return h.view('videos/index', { videos })
+      return h.view('videos/index')
     } catch (e) {
 
     }

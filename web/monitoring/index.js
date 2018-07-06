@@ -5,7 +5,7 @@ async function register (server, options) {
     plugin: require('good'),
     options: {
       ops: {
-        interval: 5000
+        interval: 10000
       },
       reporters: {
         myConsoleReporter: [
