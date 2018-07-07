@@ -45,10 +45,11 @@
                         <td>{{formatFsize fsize}}</td>
                         <td>
                             {{#if ../isBlock2 }}
-                                <a href="{{cdnURL key}}" class="is-text">查看</a>&nbsp;
-                                <a href="/qiniu/del?key={{key}}&bucket=cdn-block2" class="is-text">删除</a>&nbsp;
+                                <a href="/video/play?url={{cdnURL key}}" class="button is-primary">播放</a>&nbsp;&nbsp;
+                                <!--<a href="/qiniu/del?key={{key}}&bucket=cdn-block2" class="is-text">删除</a>&nbsp;-->
                             {{else}}
-                                <a href="/qiniu/trans?key={{key}}" class="button">转码</a>
+                                <!--<a href="/qiniu/move?key={{key}}" class="button is-primary">移动</a>-->
+                                <!--<a href="/qiniu/trans?key={{key}}" class="button">转码</a>-->
                             {{/if}}
                         </td>
                     </tr>
@@ -58,7 +59,11 @@
             <nav class="pagination" role="navigation" aria-label="pagination">
                 <a class="pagination-previous" title="This is the first page" href="/qiniu">首页</a>
                 {{#if data.marker}}
-                    <a class="pagination-next" href="/qiniu?marker={{data.marker}}">下一页</a>
+                    {{#if isBlock2}}
+                        <a class="pagination-next" href="/qiniu?bucket=cdn-block2&marker={{data.marker}}">下一页</a>
+                    {{else}}
+                        <a class="pagination-next" href="/qiniu?marker={{data.marker}}">下一页</a>
+                    {{/if}}
                 {{else}}
                     <a class="pagination-next" title="Disabled button" disabled>下一页</a>
                 {{/if}}

@@ -13,14 +13,8 @@
     {{> header}}
     <section class="section">
         <div class="container box">
-            <div class="columns is-one-quarter">
-                <div class="column">
-
-                </div>
-                <div class="column ">
-
-                </div>
-            </div>
+            <div id="dplayer"></div>
+            <input type="text" id="videoUrl" hidden value="{{url}}">
         </div>
     </section>
 </div>
@@ -29,8 +23,25 @@
 {{#> _script }}
     <script src="/js/DPlayer.min.js"></script>
     <script>
-        $(function () {
+        console.log($('#videoUrl').val())
 
+        $(function () {
+            var dp = new DPlayer({
+                container: document.getElementById('dplayer'),
+                theme: '#2780E3',
+                autoplay: true,
+                video: {
+                    url: $('#videoUrl').val()
+                },
+                contextmenu: [{
+                    text: 'Video info',
+                    click: function (player) {
+                        player.infoPanel.triggle()
+                    }
+                }]
+            })
+
+            console.log(dp)
         })
     </script>
 {{/_script}}

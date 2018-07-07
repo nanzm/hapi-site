@@ -26,17 +26,17 @@ const Routes = [
   },
   {
     method: 'GET',
-    path: '/videos/{slug}',
+    path: '/video/play',
     handler: Handler.single,
     options: {
       validate: {
-        params: {
-          slug: Joi.string().required()
+        query: {
+          url: Joi.string().required()
         }
-      },
-      auth: {
-        mode: 'try'
       }
+      // auth: {
+      //   mode: 'try'
+      // }
     }
   }
 ]

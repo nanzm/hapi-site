@@ -52,7 +52,7 @@ class qn {
     const that = this
     const bucket = bucketParam || 'cdn-block1'
     const options = Object.assign({
-      limit: 20,
+      limit: 100,
       prefix: ''
       // marker    上一次列举返回的位置标记，作为本次列举的起点信息
       // limit     每次返回的最大列举文件数量
@@ -98,34 +98,59 @@ class qn {
    * @returns {Promise<any>}
    */
   trans (key) {
-    const that = this
-    var operManager = new qiniu.fop.OperationManager(this.mac, this.config)
+    const operManager = new qiniu.fop.OperationManager(this.mac, this.config)
 
-    //substr get saveKey
+    // substr get saveKey
     const index = key.lastIndexOf('.')
     const saveKey = key.substr(0, index)
 
-    //多媒体队列
-    var pipeline = 'doing1'
+    // 多媒体队列
+    const pipeline = 'doing1'
 
-    var srcBucket = 'cdn-block1'
-    var srcKey = key
+    const srcBucket = 'cdn-block1'
+    const srcKey = key
 
-    //回调
-    var options = {
+    // 回调
+    const options = {
       'notifyURL': 'http://nancode.cn/qiniu/notify',
       'force': false
     }
 
-    //处理指令集合
-    var saveBucket = 'cdn-block2'
-    var fops = [
+    // 处理指令集合
+    const saveBucket = 'cdn-block2'
+    const fops = [
       'avthumb/mp4|saveas/' + qiniu.util.urlsafeBase64Encode(saveBucket + ':' + saveKey + '.mp4'),
       'vframe/jpg/offset/10|saveas/' + qiniu.util.urlsafeBase64Encode(saveBucket + ':' + saveKey + '.jpg')
     ]
-    //持久化数据处理返回的是任务的persistentId，可以根据这个id查询处理状态
+    // 持久化数据处理返回的是任务的persistentId，可以根据这个id查询处理状态
     return new Promise(function (resolve, reject) {
       operManager.pfop(srcBucket, srcKey, fops, pipeline, options, function (err, respBody, respInfo) {
+        if (err) {
+          return reject(err)
+        }
+        resolve(respInfo)
+      })
+    })
+  }
+
+  /**
+   * 移动
+   */
+  move (key) {
+    const that = this
+    const srcKey = key
+    const srcBucket = 'cdn-block2'
+
+    const destBucket = 'cdn-block1'
+    const destKey = key
+
+    // 强制覆盖已有同名文件
+    const options = {
+      force: true
+    }
+
+    return new Promise(function (resolve, reject) {
+      that.bucketManager.move(srcBucket, srcKey, destBucket, destKey, options, function (err, respBody, respInfo) {
         if (err) {
           return reject(err)
         }

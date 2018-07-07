@@ -14,10 +14,9 @@ const Handler = {
 
       const result = await new Qiniu().list(opts, req.query.bucket || '')
 
-      let isBlock2 = req.query.bucket == 'cdn-block2'
+      let isBlock2 = req.query.bucket === 'cdn-block2'
 
       return h.view('qiniu/list', { data: result.data, isBlock2 })
-
     } catch (e) {
       const { path, method } = req
       return h.view('server-error', {
@@ -31,7 +30,7 @@ const Handler = {
   trans: async function (req, h) {
     try {
       const file = req.query.key
-      const result = await new Qiniu().trans(file)
+      await new Qiniu().trans(file)
       return h.redirect('/qiniu?bucket=cdn-block2')
     } catch (e) {
       return h.view('server-error', { e })
@@ -57,7 +56,6 @@ const Handler = {
         message: e.message, stack: e.stack, path, method: method.toUpperCase()
       })
     }
-
   },
   /**
    * token
@@ -67,11 +65,26 @@ const Handler = {
       const result = new Qiniu().token()
       return h.response({ token: result })
     } catch (e) {
-      return boom.serverUnavailable()
+      return boom.serverUnavailable(e)
+    }
+  },
+  /**
+   * 移动
+   */
+  move: async function (req, h) {
+    try {
+      const key = req.query.key
+      new Qiniu().move(key)
+      return h.redirect('/qiniu')
+    } catch (e) {
+      return boom.serverUnavailable(e)
     }
   },
   notify: async function (req, h) {
-    debugger
+    try {
+    } catch (e) {
+
+    }
   }
 }
 

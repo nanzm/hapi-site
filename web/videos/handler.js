@@ -1,6 +1,6 @@
 'use strict'
 
-const Video = require('../../models/video')
+const Boom = require('boom')
 
 const Handler = {
   index: async (request, h) => {
@@ -15,12 +15,10 @@ const Handler = {
   },
   single: async (request, h) => {
     try {
-      const slug = request.params.slug
-
-      return h.view('videos/single')
-
+      const url = request.query.url
+      return h.view('videos/single', { url: url })
     } catch (e) {
-
+      return Boom.serverUnavailable(e.message)
     }
   }
 

@@ -7,39 +7,37 @@ const Routes = [{
   path: '/qiniu',
   handler: Handler.index,
   options: {
-    auth: {
-      mode: 'try'
-    }
+
   }
 }, {
   method: 'GET',
   path: '/qiniu/trans',
   handler: Handler.trans,
   options: {
-    auth: {
-      mode: 'try'
-    }
+
   }
 }, {
   method: 'GET',
   path: '/qiniu/del',
   handler: Handler.del,
   options: {
-    auth: {
-      mode: 'try'
-    }
+
   }
 }, {
   method: 'GET',
   path: '/qiniu/token',
   handler: Handler.token,
   options: {
-    auth: {
-      mode: 'try'
-    }
+
   }
 }, {
-  method: 'POST',
+  method: 'GET',
+  path: '/qiniu/move',
+  handler: Handler.move,
+  options: {
+  }
+}, {
+  method: '*',
   path: '/qiniu/notify',
   handler: Handler.notify,
   options: {
