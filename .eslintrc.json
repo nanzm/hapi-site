@@ -8,6 +8,20 @@
     "ecmaVersion": 8
   },
   "rules": {
-    "indent": ["error", 2]
-  }
+    "indent": [
+      "error",
+      2
+    ]
+  },
+  "overrides": [
+    {
+      "files": [
+        "models/*.js",
+        "utils/*.js",
+        "web/*.js",
+        "server.js"
+      ],
+      "excludedFiles": "*.test.js"
+    }
+  ]
 }

@@ -67,12 +67,12 @@ async function init () {
     context: {}
   })
 
-  //启动
+  // 启动
   await server.start()
   console.log(`Server started → ${server.info.uri}`)
 }
 
-//bug report
+// bug report
 fundebug.apikey = process.env.FUNDEBUG
 fundebug.releasestage = process.env.NODE_ENV
 
