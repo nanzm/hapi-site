@@ -74,6 +74,8 @@ async function init () {
 
 //bug report
 fundebug.apikey = process.env.FUNDEBUG
+fundebug.releasestage = process.env.NODE_ENV
+
 process.on('unhandledRejection', (err) => {
   console.error(err)
   fundebug.HapiErrorHandler(err)
