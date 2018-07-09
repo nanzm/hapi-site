@@ -3,14 +3,7 @@
 const Joi = require('joi')
 const Handler = require('./handler')
 
-/**
- * 将错误信息挂到request
- * @param request
- * @param h
- * @param err
- * @returns {Promise<*>}
- */
-async function goNext (request, h, err) {
+async function transError (request, h, err) {
   request.validateError = err
   return h.continue
 }
@@ -39,7 +32,7 @@ const Routes = [
           email: Joi.string().email(),
           password: Joi.string().regex(/^[a-zA-Z0-9]{3,30}$/)
         },
-        failAction: goNext
+        failAction: transError
       }
     }
   },
@@ -86,7 +79,7 @@ const Routes = [
           email: Joi.string().email(),
           password: Joi.string().regex(/^[a-zA-Z0-9]{3,30}$/)
         },
-        failAction: goNext
+        failAction: transError
       }
     }
   },
@@ -112,7 +105,7 @@ const Routes = [
         payload: {
           email: Joi.string().email()
         },
-        failAction: goNext
+        failAction: transError
       }
     }
   }

@@ -21,65 +21,75 @@ const server = new Hapi.Server({
   }]
 })
 
-async function init () {
-  await server.register([
-    {
-      plugin: require('inert')
-    },
-    {
-      plugin: require('vision')
-    },
-    {
-      plugin: require('./web/monitoring')
-    },
-    {
-      plugin: require('./web/authentication')
-    },
-    {
-      plugin: require('./web/error')
-    },
-    {
-      plugin: require('./web/base')
-    },
-    {
-      plugin: require('./web/videos')
-    },
-    {
-      plugin: require('./web/qiniu')
-    },
-    {
-      plugin: require('./web/add-user-to-views')
-    }
-  ])
+async function start () {
+  // start your server
+  try {
+    await server.register([
+      {
+        plugin: require('inert')
+      },
+      {
+        plugin: require('vision')
+      },
+      {
+        plugin: require('./web/monitoring')
+      },
+      {
+        plugin: require('./web/authentication')
+      },
+      {
+        plugin: require('./web/error')
+      },
+      {
+        plugin: require('./web/base')
+      },
+      {
+        plugin: require('./web/videos')
+      },
+      {
+        plugin: require('./web/qiniu')
+      },
+      {
+        plugin: require('./web/add-user-to-views')
+      }
+    ])
 
-  const viewsPath = Path.resolve(__dirname, 'public', 'views')
+    const viewsPath = Path.resolve(__dirname, 'public', 'views')
 
-  server.views({
-    engines: {
-      hbs: Handlebars
-    },
-    path: viewsPath,
-    layoutPath: Path.resolve(viewsPath, 'layouts'),
-    layout: 'layout',
-    helpersPath: Path.resolve(viewsPath, 'helpers'),
-    partialsPath: Path.resolve(viewsPath, 'partials'),
-    isCached: process.env.NODE_ENV === 'production',
-    context: {}
-  })
+    server.views({
+      engines: {
+        hbs: Handlebars
+      },
+      path: viewsPath,
+      layoutPath: Path.resolve(viewsPath, 'layouts'),
+      layout: 'layout',
+      helpersPath: Path.resolve(viewsPath, 'helpers'),
+      partialsPath: Path.resolve(viewsPath, 'partials'),
+      isCached: process.env.NODE_ENV === 'production',
+      context: {}
+    })
 
-  // 启动
-  await server.start()
-  console.log(`Server started → ${server.info.uri}`)
+    await server.start()
+  } catch (err) {
+    console.error(err)
+    process.exit(1)
+  }
+
+  console.log('Server running at: ', server.info.uri)
 }
+
+start()
 
 // bug report
 fundebug.apikey = process.env.FUNDEBUG
 fundebug.releasestage = process.env.NODE_ENV
 
-process.on('unhandledRejection', (err) => {
-  console.error(err)
-  fundebug.HapiErrorHandler(err)
-  process.exit(1)
-})
+process.on('SIGINT', function () {
+  console.log('stopping hapi server')
 
-init()
+  server.stop({ timeout: 10000 }).then(function (err) {
+    console.error('hapi server stopped')
+    if (err) fundebug.HapiErrorHandler(err)
+    process.exit((err) ? 1 : 0)
+  })
+})
