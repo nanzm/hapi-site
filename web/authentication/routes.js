@@ -1,113 +1,47 @@
 'use strict'
 
-const Joi = require('joi')
 const Handler = require('./handler')
-
-async function transError (request, h, err) {
-  request.validateError = err
-  return h.continue
-}
 
 const Routes = [
   {
     method: 'GET',
     path: '/login',
-    handler: Handler.login,
-    options: {
-      auth: {
-        mode: 'try'
-      }
-    }
+    options: Handler.login
   },
   {
     method: 'POST',
     path: '/login',
-    handler: Handler.form,
-    options: {
-      auth: {
-        mode: 'try'
-      },
-      validate: {
-        payload: {
-          email: Joi.string().email(),
-          password: Joi.string().regex(/^[a-zA-Z0-9]{3,30}$/)
-        },
-        failAction: transError
-      }
-    }
+    options: Handler.form
   },
   {
     method: 'GET',
     path: '/logout',
-    handler: Handler.logout,
-    options: {
-      auth: {
-        mode: 'try'
-      }
-    }
+    options: Handler.logout
   },
   {
     method: 'GET',
     path: '/signup',
-    handler: Handler.signup,
-    options: {
-      auth: {
-        mode: 'try'
-      }
-    }
+    options: Handler.signup
   },
   {
     method: 'GET',
     path: '/signup_success',
-    handler: Handler.signup_success,
-    options: {
-      auth: {
-        mode: 'try'
-      }
-    }
+    options: Handler.signup_success
   },
   {
     method: 'POST',
     path: '/signup',
-    handler: Handler.signup_submit,
-    options: {
-      auth: {
-        mode: 'try'
-      },
-      validate: {
-        payload: {
-          email: Joi.string().email(),
-          password: Joi.string().regex(/^[a-zA-Z0-9]{3,30}$/)
-        },
-        failAction: transError
-      }
-    }
+    options: Handler.signup_submit
   },
   {
     method: 'GET',
     path: '/forgot-password',
-    handler: Handler.forgot_password,
-    options: {
-      auth: {
-        mode: 'try'
-      }
-    }
+    options: Handler.forgot_password
   },
   {
     method: 'POST',
     path: '/forgot-password',
-    handler: Handler.forgot_password_submit,
-    options: {
-      auth: {
-        mode: 'try'
-      },
-      validate: {
-        payload: {
-          email: Joi.string().email()
-        },
-        failAction: transError
-      }
-    }
+    options: Handler.forgot_password_submit
   }
 ]
 

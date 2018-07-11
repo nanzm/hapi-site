@@ -5,44 +5,27 @@ const Handler = require('./handler')
 const Routes = [{
   method: 'GET',
   path: '/qiniu',
-  handler: Handler.index,
-  options: {
-
-  }
+  options: Handler.index
 }, {
   method: 'GET',
   path: '/qiniu/trans',
-  handler: Handler.trans,
-  options: {
-
-  }
+  options: Handler.trans
 }, {
   method: 'GET',
   path: '/qiniu/del',
-  handler: Handler.del,
-  options: {
-
-  }
+  options: Handler.del
 }, {
   method: 'GET',
   path: '/qiniu/token',
-  handler: Handler.token,
-  options: {
-
-  }
+  options: Handler.token
 }, {
   method: 'GET',
   path: '/qiniu/move',
-  handler: Handler.move,
-  options: {
-  }
+  options: Handler.move
 }, {
   method: '*',
   path: '/qiniu/notify',
-  handler: Handler.notify,
-  options: {
-    auth: false
-  }
+  options: Handler.notify
 }]
 
 module.exports = Routes

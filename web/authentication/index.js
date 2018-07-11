@@ -3,11 +3,11 @@
 const Routes = require('./routes')
 
 async function register (server, options) {
-  const cache = server.cache({ cache: 'mongoCache', segment: 'sessions', expiresIn: 3 * 24 * 60 * 60 * 1000 })
-  server.app.cache = cache
-
-  // const cache = server.cache({ segment: 'sessions', expiresIn: 3 * 24 * 60 * 60 * 1000 })
+  // const cache = server.cache({ cache: 'mongoCache', segment: 'sessions', expiresIn: 3 * 24 * 60 * 60 * 1000 })
   // server.app.cache = cache
+
+  const cache = server.cache({ segment: 'sessions', expiresIn: 3 * 24 * 60 * 60 * 1000 })
+  server.app.cache = cache
 
   await server.register(require('hapi-auth-cookie'))
 
@@ -27,13 +27,13 @@ async function register (server, options) {
         out.credentials = cached.account
         console.warn(cached.account)
       }
-
-      server.log('info', '----------------------validateFunc--------------------------')
-
       return out
     }
   })
-  server.auth.default('session')
+  server.auth.default({
+    mode: 'try',
+    strategy: 'session'
+  })
 
   server.route(Routes)
   server.log('info', 'Plugin authentication!')

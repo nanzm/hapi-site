@@ -5,62 +5,27 @@ const Handler = require('./handler')
 const Routes = [{
   method: 'GET',
   path: '/test',
-  handler: Handler.test,
-  options: {}
-}, {
-  method: 'GET',
-  path: '/images/{param*}',
-  handler: {
-    directory: {
-      path: 'public/images'
-      // listing: true
-    }
-  },
-  options: {
-    auth: false
-  }
+  options: Handler.test
 }, {
   method: 'GET',
   path: '/css/{param*}',
-  handler: {
-    directory: {
-      path: 'public/css'
-    }
-  },
-  options: {
-    auth: false
-  }
+  options: Handler.css
 }, {
   method: 'GET',
   path: '/fonts/{param*}',
-  handler: {
-    directory: {
-      path: 'public/fonts'
-    }
-  },
-  options: {
-    auth: false
-  }
+  options: Handler.fonts
+}, {
+  method: 'GET',
+  path: '/images/{param*}',
+  options: Handler.image
 }, {
   method: 'GET',
   path: '/js/{param*}',
-  handler: {
-    directory: {
-      path: 'public/js'
-    }
-  },
-  options: {
-    auth: false
-  }
+  options: Handler.js
 }, {
   method: '*',
   path: '/{path*}',
-  handler: Handler.missing,
-  options: {
-    auth: {
-      mode: 'try'
-    }
-  }
+  options: Handler.missing
 }]
 
 module.exports = Routes
