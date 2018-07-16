@@ -13,14 +13,9 @@ const Handler = {
   },
   add: {
     handler: async (request, h) => {
-      try {
-        const { title, desc } = request.payload
-        await Picture.create({ title, desc })
-      } catch (e) {
-        request.server.log(e.message)
-        return h.view('picture/index', { error: '添加项目失败' })
-      }
-      return h.view('picture/index', { info: '添加项目失败' })
+      const { title, desc } = request.payload
+      await Picture.create({ title, desc })
+      return h.redirect('/picture')
     },
     validate: {
       payload: {
@@ -32,6 +27,17 @@ const Handler = {
 
         return h.view('picture/index', { errors }).code(400).takeover()
       }
+    }
+  },
+  del: {
+    handler: async (request, h) => {
+      await Picture.deleteOne({ _id: request.params.id })
+      return h.redirect('/picture')
+    }
+  },
+  detail: {
+    handler: async (request, h) => {
+      return h.view('picture/detail')
     }
   }
 }

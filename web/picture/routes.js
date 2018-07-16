@@ -11,6 +11,14 @@ const Routes = [
     method: 'POST',
     path: '/picture',
     options: Handler.add
+  }, {
+    method: 'GET',
+    path: '/picture/del/{id}',
+    options: Handler.del
+  }, {
+    method: 'GET',
+    path: '/picture/{id}',
+    options: Handler.detail
   }
 ]
 
