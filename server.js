@@ -25,6 +25,7 @@ async function start () {
       { plugin: require('./web/error') },
       { plugin: require('./web/base') },
       { plugin: require('./web/videos') },
+      { plugin: require('./web/picture') },
       { plugin: require('./web/qiniu') },
       { plugin: require('./web/add-user-to-views') }
     ])

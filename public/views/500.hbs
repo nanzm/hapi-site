@@ -19,10 +19,12 @@
                     <p class="subtitle">
                         Uh, shit. 服务器错误
                     </p>
+                    {{#if error}}
+                        <hr>
+                        <p class="error">{{error}}</p>
+                    {{/if}}
                     <hr>
-                    <p>
-                        Better go back to safe lands, like the <a href="/">HOME</a>.
-                    </p>
+                    <p>Better go back to safe lands, like the <a href="/">HOME</a>.</p>
                 </div>
             </div>
         </div>
