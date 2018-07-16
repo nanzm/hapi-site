@@ -12,13 +12,13 @@
         <div class="container">
 
             <p class="help {{#if errors.title}}is-danger{{/if}}">{{#if errors.title}} {{errors.title.message}} {{/if}}</p>
-            <p class="help {{#if errors.desc}}is-danger{{/if}}">{{#if errors.desc}} {{errors.desc.message}} {{/if}}</p>
+            <p class="help {{#if errors.prefix}}is-danger{{/if}}">{{#if errors.prefix}} {{errors.prefix.message}} {{/if}}</p>
 
             <!--添加-->
             <form method="post">
                 <div class="field has-addons">
                     <div class="control"><input class="input {{#if errors.title}}is-danger{{/if}}" type="text" name="title" placeholder="创建项目"></div>
-                    <div class="control"><input class="input {{#if errors.desc}}is-danger{{/if}}" type="text" name="desc" placeholder="描述"></div>
+                    <div class="control"><input class="input {{#if errors.prefix}}is-danger{{/if}}" type="text" name="prefix" placeholder="描述"></div>
                     <div class="control">
                         <button class="button is-primary" type="submit">添加</button>
                     </div>
@@ -31,14 +31,12 @@
                 {{#each pictures}}
                     <div class="column is-one-quarter">
                         <div class="card">
-                            <header class="card-header">
-                                <p class="card-header-title">{{title}}</p>
-                            </header>
+                            <header class="card-header"><p class="card-header-title">{{title}}</p></header>
                             <div class="card-content">
-                                <div class="content"><p>{{desc}}</p></div>
+                                <div class="content"><p><b>prifix：</b>{{prefix}}</p></div>
                             </div>
                             <footer class="card-footer">
-                                <a href="/picture/{{_id}}" class="card-footer-item">查看</a>
+                                <a href="/picture/{{_id}}?prifix={{prefix}}" class="card-footer-item">查看</a>
                                 <a href="/picture/del/{{_id}}" class="card-footer-item">删除</a>
                             </footer>
                         </div>
@@ -46,12 +44,11 @@
                 {{/each}}
             </div>
 
-            <!---->
-
         </div>
     </section>
 </div>
 {{> footer}}
+
 {{#> _script }}
     <script>
 

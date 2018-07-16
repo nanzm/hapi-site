@@ -5,7 +5,7 @@ const { Schema } = mongoose
 
 const PictureSchema = new Schema({
   title: String,
-  desc: String,
+  prefix: String,
   meta: {
     created_at: Date,
     updated_at: Date

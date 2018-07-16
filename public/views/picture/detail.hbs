@@ -11,6 +11,24 @@
     <section class="section">
         <div class="container">
 
+            <!--列表-->
+            <div class="columns is-multiline">
+
+                {{#each list}}
+                    <div class="column is-one-fifth">
+                        <div class="card">
+                            <div class="card-image">
+                                <figure class="image is-4by3">
+                                    <img src="http://oooooooooooooooo.nancode.cn/{{key}}" alt="Placeholder image">
+                                </figure>
+                            </div>
+                            <div class="card-content">
+                                <div class="content">http://oooooooooooooooo.nancode.cn/{{key}}</div>
+                            </div>
+                        </div>
+                    </div>
+                {{/each}}
+            </div>
 
         </div>
     </section>
