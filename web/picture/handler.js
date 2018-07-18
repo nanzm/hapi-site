@@ -3,7 +3,7 @@
 const Joi = require('joi')
 const ErrorExtractor = require('../../utils/error-extractor')
 const Picture = require('../../models/picture')
-const qnsdk = require('../_common/qnsdk')
+const Qnsdk = require('../../common/qnsdk')
 
 const Handler = {
   index: {
@@ -39,7 +39,7 @@ const Handler = {
     handler: async (request, h) => {
       let prefix = request.query
 
-      let result = await new qnsdk().list({ prefix }, 'oooooooooooooooo')
+      let result = await new Qnsdk().list({ prefix }, 'oooooooooooooooo')
       let list = result.data.items
 
       return h.view('picture/detail', { list })

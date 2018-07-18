@@ -10,70 +10,42 @@
     {{> header}}
     <section class="section">
         <div class="container">
-            <div class="columns is-desktop">
-                <div class="column">
-                    <a href="">
-                        <div class="card">
-                            <div class="card-image">
-                                <figure class="image is-4by2"><img src="//oooooooooooooooo.nancode.cn/course/1.jpg" alt="Placeholder image"></figure>
-                            </div>
-                            <div class="card-content">
-                                <div class="content">高性能可扩展MySQL数据库</div>
-                            </div>
-                        </div>
-                    </a>
+
+            <p class="help {{#if errors.title}}is-danger{{/if}}">{{#if errors.title}} {{errors.title.message}} {{/if}}</p>
+            <p class="help {{#if errors.prefix}}is-danger{{/if}}">{{#if errors.prefix}} {{errors.prefix.message}} {{/if}}</p>
+            <p class="help {{#if errors.cover}}is-danger{{/if}}">{{#if errors.cover}} {{errors.cover.message}} {{/if}}</p>
+
+            <!--添加-->
+            <form method="post">
+                <div class="field has-addons">
+                    <div class="control"><input class="input {{#if errors.title}}is-danger{{/if}}" type="text" name="title" placeholder="创建课程"></div>
+                    <div class="control"><input class="input {{#if errors.prefix}}is-danger{{/if}}" type="text" name="prefix" placeholder="课程前缀"></div>
+                    <div class="control"><input class="input {{#if errors.cover}}is-danger{{/if}}" type="text" name="cover" placeholder="封面url"></div>
+                    <div class="control">
+                        <button class="button is-primary" type="submit">添加</button>
+                    </div>
                 </div>
-                <div class="column">
-                    <a href="">
-                        <div class="card">
-                            <div class="card-image">
-                                <figure class="image is-4by2"><img src="//oooooooooooooooo.nancode.cn/course/2.jpg" alt="Placeholder image"></figure>
+            </form>
+            <br>
+
+            <!--列表-->
+            <div class="columns is-multiline">
+                {{#each videos}}
+                    <div class="column is-one-quarter">
+                        <a href="/video/player?prefix={{prefix}}">
+                            <div class="card">
+                                <div class="card-image">
+                                    <figure class="image is-4by2"><img src="{{cover}}" alt="Placeholder image"></figure>
+                                </div>
+                                <div class="card-content">
+                                    <div class="content">{{title}}</div>
+                                </div>
                             </div>
-                            <div class="card-content">
-                                <div class="content">Redis从入门到高可用，分布式实践</div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="column">
-                    <a href="">
-                        <div class="card">
-                            <div class="card-image">
-                                <figure class="image is-4by2"><img src="//oooooooooooooooo.nancode.cn/course/3.jpg" alt="Placeholder image"></figure>
-                            </div>
-                            <div class="card-content">
-                                <div class="content">四大维度解锁Webpack3前端工程化</div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="column">
-                    <a href="">
-                        <div class="card">
-                            <div class="card-image">
-                                <figure class="image is-4by2"><img src="//oooooooooooooooo.nancode.cn/course/4.jpg" alt="Placeholder image"></figure>
-                            </div>
-                            <div class="card-content">
-                                <div class="content">全面系统讲解CSS工作应用</div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
+                        </a>
+                    </div>
+                {{/each}}
             </div>
-            <div class="columns is-desktop">
-                <div class="column is-one-quarter">
-                    <a href="">
-                        <div class="card">
-                            <div class="card-image">
-                                <figure class="image is-4by2"><img src="//oooooooooooooooo.nancode.cn/course/5.jpg" alt="Placeholder image"></figure>
-                            </div>
-                            <div class="card-content">
-                                <div class="content">揭秘一线互联网企业 前端JavaScript高级面试</div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
+
         </div>
     </section>
 </div>

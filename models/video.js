@@ -5,7 +5,7 @@ const { Schema } = mongoose
 
 const VideoSchema = new Schema({
   title: String,
-  url: String,
+  prefix: String,
   cover: String,
   meta: {
     created_at: Date,

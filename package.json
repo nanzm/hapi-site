@@ -1,7 +1,7 @@
 {
   "name": "hapi-site",
   "description": "",
-  "version": "2.1.1",
+  "version": "0.1.2",
   "author": "",
   "scripts": {
     "dev": "nodemon --inspect server.js",
@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
-    "bcrypt": "^2.0.1",
+    "bcrypt": "^3.0.0",
     "boom": "~7.2.0",
     "catbox-mongodb": "^4.2.0",
     "dotenv": "~5.0.1",
@@ -24,6 +24,7 @@
     "hapi": "^17.5.2",
     "hapi-auth-cookie": "^9.0.0",
     "hapi-dev-errors": "^2.2.0",
+    "hapi-swagger": "^9.1.1",
     "hoek": "~5.0.3",
     "inert": "~5.1.0",
     "joi": "^13.4.0",

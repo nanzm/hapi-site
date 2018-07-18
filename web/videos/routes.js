@@ -1,43 +1,33 @@
 'use strict'
 
-const Joi = require('joi')
 const Handler = require('./handler')
 
 const Routes = [
   {
     method: 'GET',
     path: '/',
-    handler: Handler.index,
-    options: {
-      auth: {
-        mode: 'try'
-      }
-    }
+    options: Handler.index
   },
   {
     method: 'GET',
     path: '/videos',
-    handler: Handler.videos,
-    options: {
-      auth: {
-        mode: 'try'
-      }
-    }
-  },
-  {
+    options: Handler.index
+  }, {
+    method: 'POST',
+    path: '/videos',
+    options: Handler.add
+  }, {
     method: 'GET',
-    path: '/video/play',
-    handler: Handler.single,
-    options: {
-      validate: {
-        query: {
-          url: Joi.string().required()
-        }
-      }
-      // auth: {
-      //   mode: 'try'
-      // }
-    }
+    path: '/video/del/{id}',
+    options: Handler.del
+  }, {
+    method: 'GET',
+    path: '/video/player',
+    options: Handler.player
+  }, {
+    method: 'GET',
+    path: '/api/v1/course',
+    options: Handler.api_course_list
   }
 ]
 

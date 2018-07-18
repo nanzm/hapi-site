@@ -1,7 +1,7 @@
 'use strict'
 
 const boom = require('boom')
-const Qiniu = require('../_common/qnsdk')
+const Qiniu = require('../../common/qnsdk')
 
 const Handler = {
   /**
