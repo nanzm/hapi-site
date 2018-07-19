@@ -6,6 +6,7 @@ async function register (server, options) {
   await server.register([{
     plugin: require('hapi-swagger'),
     options: {
+      schemes: ['https', 'http'],
       host: process.env.NODE_ENV === 'production' ? 'nancode.cn' : 'localhost:3000',
       info: {
         title: '接口文档',
