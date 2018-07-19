@@ -9,6 +9,12 @@ const Qnsdk = require('../../common/qnsdk')
 const Handler = {
   index: {
     handler: async (request, h) => {
+      return h.redirect('/videos')
+    }
+  },
+
+  videos: {
+    handler: async (request, h) => {
       const videos = await Video.find()
       return h.view('videos/index', { videos })
     }
@@ -73,7 +79,7 @@ const Handler = {
       query: {
         prefix: Joi.string().required().description('前缀，模拟目录'),
         limit: Joi.number().description('数量'),
-        marker: Joi.string().description('上一次列举返回的位置标记，作为本次列举的起点信息')
+        marker: Joi.any().optional().description('上一次列举返回的位置标记，作为本次列举的起点信息')
       }
     }
   }

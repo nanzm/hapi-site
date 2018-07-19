@@ -20,8 +20,8 @@ async function start () {
     await server.register([
       { plugin: require('inert') },
       { plugin: require('vision') },
-      { plugin: require('./web/swagger') },
       { plugin: require('./web/monitoring') },
+      { plugin: require('./web/swagger') },
       { plugin: require('./web/authentication') },
       { plugin: require('./web/error') },
       { plugin: require('./web/base') },

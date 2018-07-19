@@ -11,7 +11,7 @@ const Routes = [
   {
     method: 'GET',
     path: '/videos',
-    options: Handler.index
+    options: Handler.videos
   }, {
     method: 'POST',
     path: '/videos',

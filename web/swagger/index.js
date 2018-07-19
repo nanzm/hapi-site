@@ -17,7 +17,7 @@ async function register (server, options) {
     }
   }])
 
-  server.log('info', 'Plugin hapiswagger!')
+  server.log('info', 'Plugin swagger!')
 }
 
 exports.plugin = {
