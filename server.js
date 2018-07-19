@@ -61,6 +61,12 @@ start()
 fundebug.apikey = process.env.FUNDEBUG
 fundebug.releasestage = process.env.NODE_ENV
 
+process.on('unhandledRejection', (err) => {
+  console.error(err)
+  fundebug.HapiErrorHandler(err)
+  process.exit(1)
+})
+
 process.on('SIGINT', function () {
   console.log('stopping hapi server')
 
