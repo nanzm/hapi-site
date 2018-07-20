@@ -1,0 +1,7 @@
+{
+  "src_dir": "/Users/sufun/Documents/test",
+  "bucket": "cdn-block2",
+  "key_prefix": "cpp系统工程师/",
+  "skip_suffixes": ".DS_Store,.exe",
+  "skip_fixed_strings": ".svn,.git"
+}
